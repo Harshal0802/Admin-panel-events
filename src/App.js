@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Dashboard from "./pages/Dashboard.jsx";
+import CreateEvent from "./pages/CreateEvent.jsx";
+import EventDetails from "./pages/EventDetails.jsx";
+import AuthenticationRoute from "./components/AuthenticationRoute.jsx";
+import "./App.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login.jsx";
 
 function App() {
+  const { user, loginWithRedirect, isAuthenticated } = useAuth0();
+  console.log("user", user);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={<AuthenticationRoute component={Dashboard} />}
+        />
+        <Route path="/event-details" element={<EventDetails />} />
+        <Route path="/create-event" element={<CreateEvent />} /> */}
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
